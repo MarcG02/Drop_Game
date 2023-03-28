@@ -85,10 +85,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 
-
 		camera.update();
 
 		batch.setProjectionMatrix(camera.combined);
+		batch.draw(backGround, 0 , 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		batch.begin();
 		batch.draw(bucketImage, bucket.x, bucket.y);
@@ -126,6 +126,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void dispose() {
 		dropImage.dispose();
 		bucketImage.dispose();
+		backGround.dispose();
 		dropSound.dispose();
 		rainMusic.dispose();
 		batch.dispose();
