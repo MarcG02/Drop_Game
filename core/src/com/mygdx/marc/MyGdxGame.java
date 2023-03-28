@@ -32,15 +32,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-
 
 public class MyGdxGame extends ApplicationAdapter {
 	private Texture dropImage;
-	private Texture bucketImage;
+	private Texture bucketImage, backGround;
 	private Sound dropSound;
 	private Music rainMusic;
 	private SpriteBatch batch;
@@ -53,6 +48,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create() {
 		dropImage = new Texture(Gdx.files.internal("droplet.png"));
 		bucketImage = new Texture(Gdx.files.internal("bucket.png"));
+		backGround = new Texture(Gdx.files.internal("cloudyDay.jpg"));
 
 		dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
 		rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
@@ -65,8 +61,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		bucket = new Rectangle();
-		bucket.x = 800 / 2 - 64 / 2; // center the bucket horizontally
-		bucket.y = 20; // bottom left corner of the bucket is 20 pixels above the bottom screen edge
+		bucket.x = 800 / 2 - 64 / 2;
+		bucket.y = 20;
 		bucket.width = 64;
 		bucket.height = 64;
 
@@ -86,12 +82,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render() {
+
 		ScreenUtils.clear(0, 0, 0.2f, 1);
+
 
 		camera.update();
 
 		batch.setProjectionMatrix(camera.combined);
-
 
 		batch.begin();
 		batch.draw(bucketImage, bucket.x, bucket.y);
@@ -133,6 +130,4 @@ public class MyGdxGame extends ApplicationAdapter {
 		rainMusic.dispose();
 		batch.dispose();
 	}
-
-
 }
